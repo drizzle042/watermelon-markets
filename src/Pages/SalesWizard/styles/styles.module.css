@@ -1,0 +1,28 @@
+.main {
+	width: 60%;
+	height: 80vh;
+	margin: auto;
+	padding: 20px;
+}
+
+.campaignBody {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.campaignQuestion {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .main {
+    width: 100%;
+    height: 100vh;
+  }
+}
