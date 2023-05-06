@@ -19,8 +19,8 @@ const Question1 = ({ styles, salesWizardLogic }) =>
 		width: "400px",
 		maxWidth: "500px"
 	}}
-	value={salesWizardLogic?.FormData?.storeName}
-	onInput={salesWizardLogic?.handleStoreNameField} />
+	value={salesWizardLogic?.FormData?.store_name}
+	onInput={(e) => salesWizardLogic?.handleField(e, 'store_name', 0)} />
 </div>;
 
 const Question2 = ({ styles, salesWizardLogic }) => 
@@ -43,8 +43,8 @@ const Question2 = ({ styles, salesWizardLogic }) =>
 		width: "400px",
 		maxWidth: "500px"
 	}}
-	value={salesWizardLogic?.FormData?.giftCardBalance}
-	onInput={salesWizardLogic?.handleGiftCardBalanceField} />
+	value={salesWizardLogic?.FormData?.gift_card_balance}
+	onInput={(e) => salesWizardLogic?.handleField(e, 'gift_card_balance', 1)} />
 </div>;	
 	
 const Question3 = ({ styles, salesWizardLogic }) => 
@@ -67,19 +67,34 @@ const Question3 = ({ styles, salesWizardLogic }) =>
 		width: "400px",
 		maxWidth: "500px"
 	}}
-	value={salesWizardLogic.FormData?.sellingPrice}
-	onInput={
-		(e) => {
-			salesWizardLogic.SetFormData({
-				...salesWizardLogic.FormData,
-				sellingPrice: e.target.value
-			})
-			salesWizardLogic.setAnsweredQuestions({
-				...salesWizardLogic.answeredQuestions,
-				2: salesWizardLogic.steps[salesWizardLogic.activeStep]
-			})
-		}
-	} />
+	value={salesWizardLogic?.FormData?.price}
+	onInput={(e) => salesWizardLogic?.handleField(e, 'price', 2)} />
+</div>;
+	
+const Question4 = ({ styles, salesWizardLogic }) => 
+<div className={styles.campaignQuestion}>
+	<Typography 
+	textAlign={"center"} 
+	sx={{ 
+		mt: 2, mb: 1,
+		maxWidth: "500px",
+		lineHeight: "1.0"
+	}}>
+		What is your Gift Card number?
+		We usually use this for confirmation of each product.
+	</Typography>
+	<TextField 
+	InputProps={{
+		pattern: '[0-9]*'
+	}}
+	label="Gift Card Number" 
+	variant="outlined"
+	sx={{
+		width: "400px",
+		maxWidth: "500px"
+	}}
+	value={salesWizardLogic?.FormData?.gift_card_number}
+	onInput={(e) => salesWizardLogic?.handleField(e, 'gift_card_number', 3)} />
 </div>;
 
 const AcceptableNetworks = [
@@ -93,7 +108,7 @@ const AcceptableNetworks = [
 	}
 ]
 
-const Question4 = ({ styles, salesWizardLogic }) => 
+const Question5 = ({ styles, salesWizardLogic }) => 
 <div className={styles.campaignQuestion}>
 	<Typography textAlign={"center"} sx={{ mt: 2, mb: 1 }}>
 		Which network would you like to receive funds at?
@@ -106,26 +121,15 @@ const Question4 = ({ styles, salesWizardLogic }) =>
 		width: "400px",
 		maxWidth: "500px"
 	}}
-	value={salesWizardLogic.FormData?.userNetwork}
-	onChange={
-		(e) => {
-			salesWizardLogic.SetFormData({
-				...salesWizardLogic.FormData,
-				userNetwork: e.target.value
-			})
-			salesWizardLogic.setAnsweredQuestions({
-				...salesWizardLogic.answeredQuestions,
-				3: salesWizardLogic.steps[salesWizardLogic.activeStep]
-			})
-		}
-	}>
+	value={salesWizardLogic?.FormData?.blockchain_network}
+	onChange={(e) => salesWizardLogic?.handleField(e, 'blockchain_network', 4)}>
 		{AcceptableNetworks.map((i, index) => (
 			<MenuItem key={index} value={i.option}>{i.icon} {i.option}</MenuItem>
 		))}
 	</TextField>
 </div>;
 
-const Question5 = ({ styles, salesWizardLogic }) => 
+const Question6 = ({ styles, salesWizardLogic }) => 
 <div className={styles.campaignQuestion}>
 	<Typography textAlign={"center"} sx={{ mt: 2, mb: 1 }}>
 		What address do you want to receive funds at?
@@ -137,22 +141,11 @@ const Question5 = ({ styles, salesWizardLogic }) =>
 		width: "400px",
 		maxWidth: "500px"
 	}}
-	value={salesWizardLogic.FormData?.networkAddress}
-	onInput={
-		(e) => {
-			salesWizardLogic.SetFormData({
-				...salesWizardLogic.FormData,
-				networkAddress: e.target.value
-			})
-			salesWizardLogic.setAnsweredQuestions({
-				...salesWizardLogic.answeredQuestions,
-				4: salesWizardLogic.steps[salesWizardLogic.activeStep]
-			})
-		}
-	} />
+	value={salesWizardLogic?.FormData?.wallet_address}
+	onInput={(e) => salesWizardLogic?.handleField(e, 'wallet_address', 5)} />
 </div>;
 	
-const Question6 = ({ styles, salesWizardLogic }) => 
+const Question7 = ({ styles, salesWizardLogic }) => 
 <div className={styles.campaignQuestion}>
 	<Typography textAlign={"center"} sx={{ mt: 2, mb: 1 }}>
 		Please provide an email address for contact purposes.
@@ -165,19 +158,8 @@ const Question6 = ({ styles, salesWizardLogic }) =>
 		width: "400px",
 		maxWidth: "500px"
 	}}
-	value={salesWizardLogic.FormData?.userEmail}
-	onInput={
-		(e) => {
-			salesWizardLogic.SetFormData({
-				...salesWizardLogic.FormData,
-				userEmail: e.target.value
-			})
-			salesWizardLogic.setAnsweredQuestions({
-				...salesWizardLogic.answeredQuestions,
-				5: salesWizardLogic.steps[salesWizardLogic.activeStep]
-			})
-		}
-	} />
+	value={salesWizardLogic.FormData?.contact_email}
+	onInput={(e) => salesWizardLogic?.handleField(e, 'contact_email', 6)} />
 </div>;
 
 	
@@ -199,6 +181,9 @@ const questions = [
 	styles={styles}
 	salesWizardLogic={salesWizardLogic} />,
 	<Question6
+	styles={styles}
+	salesWizardLogic={salesWizardLogic} />,
+	<Question7
 	styles={styles}
 	salesWizardLogic={salesWizardLogic} />
 ]

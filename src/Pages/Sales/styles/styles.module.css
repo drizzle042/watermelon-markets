@@ -1,0 +1,131 @@
+.main {
+    max-width: 700px;
+    margin: auto;
+    margin-top: 3rem;
+    background-color: var(--background-blue);
+    border-radius: 10px;
+    padding: 3rem;
+}
+.page {
+  max-width: 1200px;
+  margin: auto;
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.mainLoader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+.loaderDiv {
+  position: absolute;
+  width: 90%;
+  height: 50%;
+  background-color: rgb(225, 225, 225, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* Filters */
+.filters {
+  padding-top: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin: auto;
+}
+.filters .search_bar {
+  min-width: 350px;
+  max-width: 350px;
+}
+.select_bar {
+  min-width: 160px;
+  max-width: 350px;
+}
+.filters .input {
+  background-color: #fff;
+}
+.input {
+  min-width: 160px;
+}
+
+/* Tabs */
+.tab_panel {
+  padding-top: 20px;
+}
+.t_p {
+  padding: 24px 0px !important;
+}
+/* Table */
+.table_container {
+  max-width: 1200px;
+  max-height: 600px;
+  margin: auto;
+}
+.thead {
+  background-color: #f3f3f6;
+}
+.client_cell {
+  color: #1f53d7 !important;
+  font-weight: 500 !important;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.thead_cell {
+  color: #6c6b80 !important;
+  font-weight: 500 !important;
+}
+.creator_cell {
+  font-weight: 500 !important;
+  color: #3f43c8 !important;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+.status_active {
+  background-color: #ecf0ff;
+  color: #2d5bff;
+  padding: 8px 16px;
+  font-weight: 500;
+  border-radius: 40px;
+  font-size: 14px;
+}
+.status_expired {
+  background-color: #fee2e2;
+  color: #ff0303;
+  padding: 8px 16px;
+  font-weight: 500;
+  border-radius: 40px;
+  font-size: 14px;
+}
+.inputContainer {
+    background-color: white;
+    border-radius: 10px;
+    padding: 2rem;
+}
+.textFieldContainer {
+    margin: 15px;
+}
+
+@media only screen and (max-width: 500px) {
+    .main {
+        padding: 1.5rem;
+    }
+    .filters {
+      flex-direction: column;
+    }
+    .search_bar, .select_bar {
+      min-width: 90%;
+      max-width: 350px;
+    }
+    .inputContainer {
+        padding: 0.75rem;
+    }
+    .table_container {
+        width: 90%;
+        margin: auto;
+    }
+}

@@ -1,11 +1,17 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import usePost from "../../../Lib/Requests/usePost";
+import { Sales } from "../../../Lib/Endpoints/Endpoints";
+
 
 const SalesWizardLogic = () => {
 
+    /********************Accessories*********************/
     const steps = [
     'Store name', 
     'Gift card balance', 
     'Selling Price', 
+    'Gift card number', 
     'Blockchain Network',
     'Network Address',
     'Contact Email'
@@ -67,11 +73,6 @@ const SalesWizardLogic = () => {
     return Object.keys(FormData);
   };
 
-  const handleSubmitForm = () => {
-    console.log("Form submitted");
-    return ;
-  };
-
   const [answeredQuestions, setAnsweredQuestions] = useState({});
 
   const unansweredQuestions = () => {
@@ -90,26 +91,31 @@ const SalesWizardLogic = () => {
     return answeredQuestions[activeStep];
   };
 
-  function handleStoreNameField(e){
+  const handleField = (e, formField, index) => {
     SetFormData({
       ...FormData,
-      storeName: e?.target?.value
+      [formField]: e?.target?.value
     })
     setAnsweredQuestions({
       ...answeredQuestions,
-      0: steps[activeStep]
+      [index]: steps[activeStep]
     })
   };
 
-  function handleGiftCardBalanceField(e){
-    SetFormData({
-      ...FormData,
-      giftCardBalance: e?.target?.value
-    })
-    setAnsweredQuestions({
-      ...answeredQuestions,
-      1: steps[activeStep]
-    })
+  /******************Network Requests*****************/
+  const {
+    message: CreateSaleMessage,
+    setMessage: SetCreateSaleMessage,
+    messageSeverity: CreateSaleMessageSeverity,
+    postFunc: CreateSale
+  } = usePost(Sales.sales)
+  /*****************************************************/
+  const navigate = useNavigate()
+  const handleSubmitForm = () => {
+    CreateSale(
+      JSON.stringify(FormData),
+      () => setTimeout(navigate('/products'), 750)
+    );
   };
 
 
@@ -136,9 +142,11 @@ const SalesWizardLogic = () => {
     setAnsweredQuestions,
     unansweredQuestions,
     stepStatus,
-    handleStoreNameField,
-    handleGiftCardBalanceField,
-    handleSubmitForm
+    handleField,
+    handleSubmitForm,
+    CreateSaleMessage,
+    SetCreateSaleMessage,
+    CreateSaleMessageSeverity
   }
     
   return ({ salesWizardLogic });

@@ -4,9 +4,13 @@ import Box from '@mui/material/Box';
 import Paper from "@mui/material/Paper";
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import SalesWizardBotLogic from "./SalesWizardBotLogic/SalesWizardBotLogic";
 
 
 const SalesWizardBot = () => {
+
+    const { salesWizardBotLogic } = SalesWizardBotLogic()
+
     return (
 		<Box
 		sx={{
@@ -41,9 +45,10 @@ const SalesWizardBot = () => {
                 </Typography>
                 <Button
                 variant="outlined"
-                href="/#/form"
+                onClick={() => salesWizardBotLogic.navigate('/form')}
                 sx={{
-                    textTransform: "none"
+                    textTransform: "none",
+                    fontSize: '2rem'
                 }}>
                     Yes Sure
                 </Button>

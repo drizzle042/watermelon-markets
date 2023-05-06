@@ -13,6 +13,7 @@ import CustomStepper from './components/CustomStepper';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import SalesWizardQuestions from './components/SalesWizardQuestions';
 import SalesWizardLogic from './SalesWizardLogic/SalesWizardLogic';
+import FeedBack from '../../Lib/Components/Feedback';
 
 
 function SalesForm() {
@@ -73,7 +74,7 @@ function SalesForm() {
 									maxWidth: "500px",
 									lineHeight: "1.0"
 								}}>
-									Thank you for offering this sale. 
+									Thank you for offering this product. 
 									Items are usually bought within 4 days. 
 									It could be sooner...
 								</Typography>
@@ -87,7 +88,7 @@ function SalesForm() {
 							}}>
 								Thank you for using this wizard. 
 								But I have to remind you that without your {salesWizardLogic.unansweredQuestions()[0]},
-								This sale will not be put on WaterMelon markets.
+								This product will not be put on WaterMelon markets.
 							</Typography>
 						}
 							<Box 
@@ -152,7 +153,7 @@ function SalesForm() {
 								color="inherit"
 								disabled={
 									(salesWizardLogic.isLastStep()) || 
-									(salesWizardLogic.stepStatus(salesWizardLogic.activeStep))
+									(Boolean(salesWizardLogic.stepStatus(salesWizardLogic.activeStep)))
 								}
 								onClick={salesWizardLogic.handleNext}
 								variant='outlined'
@@ -166,7 +167,7 @@ function SalesForm() {
 								{salesWizardLogic.isLastStep() ?
 									<Button 
 									disabled={
-										!salesWizardLogic.stepStatus(salesWizardLogic.activeStep)
+										Boolean(!salesWizardLogic.stepStatus(salesWizardLogic.activeStep))
 									}
 									onClick={salesWizardLogic.handleFinish}
 									variant='outlined'
@@ -179,7 +180,7 @@ function SalesForm() {
 									</Button> :
 									<Button 
 									disabled={
-										!salesWizardLogic.stepStatus(salesWizardLogic.activeStep)
+										Boolean(!salesWizardLogic.stepStatus(salesWizardLogic.activeStep))
 									}
 									onClick={salesWizardLogic.handleComplete}
 									variant='outlined'
@@ -196,6 +197,10 @@ function SalesForm() {
 					)}
 				</div>
 			</Paper>
+            <FeedBack
+            message={salesWizardLogic.CreateSaleMessage}
+            setMessage={salesWizardLogic.SetCreateSaleMessage}
+            severity={salesWizardLogic.CreateSaleMessageSeverity} />
 		</Box>
   );
 }

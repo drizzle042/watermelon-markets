@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import PriceChangeIcon from '@mui/icons-material/PriceChange';
+import NumberIcon from '@mui/icons-material/Money';
 import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
 import DnsIcon from '@mui/icons-material/Dns';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
@@ -64,9 +65,10 @@ const CustomStepper = () => {
         1: <StorefrontIcon />,
         2: <AccountBalanceWalletIcon />,
         3: <PriceChangeIcon />,
-        4: <CurrencyBitcoinIcon />,
-        5: <DnsIcon />,
-        6: <MailOutlineIcon />
+        4: <NumberIcon />,
+        5: <CurrencyBitcoinIcon />,
+        6: <DnsIcon />,
+        7: <MailOutlineIcon />
       };
     
       return (

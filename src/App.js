@@ -2,6 +2,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { HashRouter, Route, Routes } from "react-router-dom";
 import SalesWizardBot from './Pages/SalesWizardBot/SalesWIzardBot';
 import SalesWizard from './Pages/SalesWizard/SalesWizard';
+import Sales from './Pages/Sales/Sales';
 
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
         <Routes>
           <Route element={<SalesWizardBot />} path="" />
           <Route element={<SalesWizard />} path="form" />
+          <Route element={<Sales />} path="products" />
         </Routes>
       </HashRouter>
     </ThemeProvider>
